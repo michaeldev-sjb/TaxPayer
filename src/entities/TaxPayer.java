@@ -84,12 +84,13 @@ public class TaxPayer {
 
     @Override
     public String toString() {
-        return "Imposto bruto total: " +
+        return "\nImposto bruto total: " +
                 String.format("%.2f", grossTax()) +
                 "\nAbatimento: " +
                 String.format("%.2f", taxRebate()) +
                 "\nImposto devido: " +
                 String.format("%.2f", netTax());
+
     }
 
 }

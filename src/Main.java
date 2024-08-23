@@ -13,9 +13,9 @@ public class Main {
         List<TaxPayer> taxPayer = new ArrayList<>();
 
         System.out.print("Quantos contribuintes você vai digitar? ");
-        int value = sc.nextInt();
+        int numberContributors = sc.nextInt();
 
-        for (int x = 1; x <= value; x++) {
+        for (int x = 1; x <= numberContributors; x++) {
             System.out.println("\nDigite os dados do " + x + "o contribuinte:");
             System.out.print("Renda anual com salário: ");
             double salary = sc.nextDouble();
@@ -31,11 +31,13 @@ public class Main {
             taxPayer.add(new TaxPayer(salary, service, income, health, education));
         }
 
+        int contributor = 0;
         for (TaxPayer t : taxPayer) {
-            int aux = 1;
-            System.out.println("\nResumo do " + aux + "o contribuinte: ");
+            contributor++;
+            System.out.print("\nResumo do " + contributor + "o contribuinte: ");
             System.out.println(t);
-            aux++;
+
         }
+
     }
 }
