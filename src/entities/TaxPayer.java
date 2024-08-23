@@ -39,9 +39,10 @@ public class TaxPayer {
     }
 
     public double salaryTax() {
-        if (salaryIncome <= 3000.0) {
-            return 0;
-        } else if (salaryIncome > 3000.0 && salaryIncome <= 5000.0) {
+        double monthlySalary = salaryIncome / 12;
+        if (monthlySalary <= 3000.0) {
+            return 0.0;
+        } else if (monthlySalary > 3000.0 && monthlySalary <= 5000.0) {
             return salaryIncome * 0.10;
         } else {
             return salaryIncome * 0.20;
@@ -49,33 +50,46 @@ public class TaxPayer {
     }
 
     public double servicesTax() {
-        return 0;
+        if (serviceIncome > 0.0) {
+            return serviceIncome * 0.15;
+        } else {
+            return 0.0;
+        }
     }
 
     public double capitalTax() {
-        return 0;
+        if (capitalIncome > 0.0) {
+            return capitalIncome * 0.20;
+        } else {
+            return 0.0;
+        }
     }
 
     public double grossTax() {
-        return 0;
+        return servicesTax() + salaryTax() + capitalTax();
     }
 
     public double taxRebate() {
-        return 0;
+
+        if (grossTax() > (healtSpending + educationSpending)) {
+            return healtSpending + educationSpending;
+        } else {
+            return grossTax() * 0.30;
+        }
     }
 
     public double netTax() {
-        return 0;
+        return grossTax() - taxRebate();
     }
 
     @Override
     public String toString() {
         return "Imposto bruto total: " +
-                salaryIncome +
+                String.format("%.2f", grossTax()) +
                 "\nAbatimento: " +
-                salaryIncome +
-                "\nImposto devido:" +
-                String.format("%.2f", salaryTax());
+                String.format("%.2f", taxRebate()) +
+                "\nImposto devido: " +
+                String.format("%.2f", netTax());
     }
 
 }
