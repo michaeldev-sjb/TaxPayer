@@ -38,6 +38,6 @@ public class Main {
             System.out.println(t);
 
         }
-
+        sc.close();
     }
 }
